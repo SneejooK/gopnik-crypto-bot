@@ -1,8 +1,8 @@
-package com.tg.bot.telegramcriptobot.bot;
+package com.tg.bot.telegramcryptobot.bot;
 
-import com.tg.bot.telegramcriptobot.entities.Alert;
-import com.tg.bot.telegramcriptobot.services.AlertService;
-import com.tg.bot.telegramcriptobot.util.Messenger;
+import com.tg.bot.telegramcryptobot.entities.Alert;
+import com.tg.bot.telegramcryptobot.services.AlertService;
+import com.tg.bot.telegramcryptobot.util.Messenger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;

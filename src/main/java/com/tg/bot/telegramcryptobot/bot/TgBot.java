@@ -1,11 +1,11 @@
-package com.tg.bot.telegramcriptobot.bot;
+package com.tg.bot.telegramcryptobot.bot;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.request.SendMessage;
-import com.tg.bot.telegramcriptobot.exceptions.BotException;
-import com.tg.bot.telegramcriptobot.util.Messenger;
+import com.tg.bot.telegramcryptobot.exceptions.BotException;
+import com.tg.bot.telegramcryptobot.util.Messenger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

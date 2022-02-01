@@ -1,4 +1,4 @@
-package com.tg.bot.telegramcriptobot.bot;
+package com.tg.bot.telegramcryptobot.bot;
 
 import lombok.Getter;
 

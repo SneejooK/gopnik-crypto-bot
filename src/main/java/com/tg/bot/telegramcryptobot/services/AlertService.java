@@ -1,7 +1,7 @@
-package com.tg.bot.telegramcriptobot.services;
+package com.tg.bot.telegramcryptobot.services;
 
-import com.tg.bot.telegramcriptobot.entities.Alert;
-import com.tg.bot.telegramcriptobot.repositories.AlertRepository;
+import com.tg.bot.telegramcryptobot.entities.Alert;
+import com.tg.bot.telegramcryptobot.repositories.AlertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

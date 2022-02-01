@@ -1,4 +1,4 @@
-package com.tg.bot.telegramcriptobot.exceptions;
+package com.tg.bot.telegramcryptobot.exceptions;
 
 public class IncorrectPriceException extends BotException {
 

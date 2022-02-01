@@ -1,13 +1,13 @@
-package com.tg.bot.telegramcriptobot.bot;
+package com.tg.bot.telegramcryptobot.bot;
 
 import com.pengrad.telegrambot.model.User;
-import com.tg.bot.telegramcriptobot.entities.Alert;
-import com.tg.bot.telegramcriptobot.exceptions.IncorrectPriceException;
-import com.tg.bot.telegramcriptobot.exceptions.NotFoundAlertException;
-import com.tg.bot.telegramcriptobot.exceptions.NotFoundCurrencyException;
-import com.tg.bot.telegramcriptobot.exceptions.NotFoundDirectionException;
-import com.tg.bot.telegramcriptobot.services.AlertService;
-import com.tg.bot.telegramcriptobot.util.Messenger;
+import com.tg.bot.telegramcryptobot.entities.Alert;
+import com.tg.bot.telegramcryptobot.exceptions.IncorrectPriceException;
+import com.tg.bot.telegramcryptobot.exceptions.NotFoundAlertException;
+import com.tg.bot.telegramcryptobot.exceptions.NotFoundCurrencyException;
+import com.tg.bot.telegramcryptobot.exceptions.NotFoundDirectionException;
+import com.tg.bot.telegramcryptobot.services.AlertService;
+import com.tg.bot.telegramcryptobot.util.Messenger;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

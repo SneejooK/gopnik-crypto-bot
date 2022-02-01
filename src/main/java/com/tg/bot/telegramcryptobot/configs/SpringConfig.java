@@ -1,4 +1,4 @@
-package com.tg.bot.telegramcriptobot.configs;
+package com.tg.bot.telegramcryptobot.configs;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

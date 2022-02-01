@@ -1,4 +1,4 @@
-package com.tg.bot.telegramcriptobot.util;
+package com.tg.bot.telegramcryptobot.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

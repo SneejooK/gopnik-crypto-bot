@@ -1,6 +1,6 @@
-package com.tg.bot.telegramcriptobot;
+package com.tg.bot.telegramcryptobot;
 
-import com.tg.bot.telegramcriptobot.bot.TgBot;
+import com.tg.bot.telegramcryptobot.bot.TgBot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

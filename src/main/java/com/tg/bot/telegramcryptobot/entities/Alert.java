@@ -1,4 +1,4 @@
-package com.tg.bot.telegramcriptobot.entities;
+package com.tg.bot.telegramcryptobot.entities;
 
 import lombok.*;
 
