@@ -8,6 +8,7 @@ import java.util.Arrays;
 public enum Command {
 
     PRICE("/price"),
+    PRICELIST("/pricelist"),
     LIST("/list"),
     GET("/get"),
     ADD("/add"),

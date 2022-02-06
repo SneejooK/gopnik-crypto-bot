@@ -80,6 +80,9 @@ public class TgBot {
                 case PRICE:
                     sendMessage(chatId, messageProcessor.doPrice(values));
                     break;
+                case PRICELIST:
+                    sendMessage(chatId, messageProcessor.doPrice(chatId));
+                    break;
                 case LIST:
                     bot.execute(messageProcessor.doList(chatId));
                     break;

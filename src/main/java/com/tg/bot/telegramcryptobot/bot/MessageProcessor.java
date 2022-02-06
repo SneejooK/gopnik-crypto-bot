@@ -79,13 +79,16 @@ public class MessageProcessor {
         } else {
             StringBuilder builder = new StringBuilder();
             builder.append(messenger.codeMessage("tg.message.price.start"));
-            for (String currency : topCurrency) {
-                builder.append("   - ").append(currency).append(" :: ").append(getActualPrice(currency)).append("$\n");
-            }
-            builder.append(messenger.codeMessage("tg.message.price.end"));
-            return builder.toString();
+            return createPriceList(builder, Set.of(topCurrency));
         }
 
+    }
+
+    public String doPrice(long chatId) {
+        Set<String> currencies = alertService.getAllCurrenciesByChatId(chatId);
+        StringBuilder builder = new StringBuilder();
+        builder.append(messenger.codeMessage("tg.message.price-list.start"));
+        return createPriceList(builder, currencies);
     }
 
     public SendMessage doList(long chatId) {
@@ -177,6 +180,18 @@ public class MessageProcessor {
         oldAlert.setLanguage(LocaleContextHolder.getLocale());
         oldAlert.setPrice(price);
         alertService.save(oldAlert);
+    }
+
+    private String createPriceList(StringBuilder builder, Set<String> currencies) {
+        for (String currency : currencies) {
+            builder.append(" : ")
+                    .append(currency)
+                    .append(" - ")
+                    .append(getActualPrice(currency))
+                    .append("$\n");
+        }
+        builder.append(messenger.codeMessage("tg.message.price.end"));
+        return builder.toString();
     }
 
     private double getPrice(String price) {
