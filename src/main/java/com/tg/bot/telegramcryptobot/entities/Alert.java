@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 @Entity
 @Getter
@@ -37,6 +38,8 @@ public class Alert {
     private boolean positive;
 
     private double price;
+
+    private Locale language;
 
     private LocalDateTime nextAlert;
 

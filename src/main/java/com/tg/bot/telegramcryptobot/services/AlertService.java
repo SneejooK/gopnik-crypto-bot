@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AlertService {
@@ -18,6 +19,10 @@ public class AlertService {
         this.alertRepository = alertRepository;
     }
 
+    public Alert getAlertById(int id) {
+        return alertRepository.getAlertById(id);
+    }
+
     public List<Alert> getAll() {
         return alertRepository.findAll();
     }
@@ -26,8 +31,16 @@ public class AlertService {
         return alertRepository.getAlertByChatIdOrderByCreatedDesc(chatId);
     }
 
+    public List<Alert> getAllByChatIdAndCurrency(long chatId, String currency) {
+        return alertRepository.getAlertByChatIdAndCurrency(chatId, currency);
+    }
+
     public Alert getAlertByChatIdAndCurrencyAndPositive(long chatId, String currency, boolean positive) {
         return alertRepository.getAlertByChatIdAndCurrencyAndPositive(chatId, currency, positive);
+    }
+
+    public Set<String> getAllCurrenciesByChatId(long chatId) {
+        return alertRepository.getCurrenciesByChatId(chatId);
     }
 
     @Transactional
@@ -41,8 +54,13 @@ public class AlertService {
     }
 
     @Transactional
-    public void removeAll(List<Alert> alerts) {
-        alertRepository.deleteAll(alerts);
+    public void remove(Alert alert) {
+        alertRepository.delete(alert);
+    }
+
+    @Transactional
+    public void removeAllByChatId(long chatId) {
+        alertRepository.deleteAlertsByChatId(chatId);
     }
 
 }

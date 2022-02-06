@@ -10,6 +10,7 @@ CREATE TABLE alert
     currency   varchar(45)    NOT NULL,
     positive   TINYINT        NOT NULL,
     price      decimal(20, 8) NOT NULL,
+    language   varchar(5)              DEFAULT NULL,
     next_alert DATETIME                DEFAULT NULL,
     created    DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),

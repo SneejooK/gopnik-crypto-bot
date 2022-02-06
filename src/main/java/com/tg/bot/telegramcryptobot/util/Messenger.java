@@ -5,6 +5,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
 import java.util.Random;
 
 @Component
@@ -36,6 +37,10 @@ public class Messenger {
 
     public String codeMessage(String codeMessage, Object... args) {
         return messageSource.getMessage(codeMessage, args, LocaleContextHolder.getLocale());
+    }
+
+    public String codeMessage(String codeMessage, Locale locale, Object... args) {
+        return messageSource.getMessage(codeMessage, args, locale != null ? locale : LocaleContextHolder.getLocale());
     }
 
     public String getRandomEmoji() {
