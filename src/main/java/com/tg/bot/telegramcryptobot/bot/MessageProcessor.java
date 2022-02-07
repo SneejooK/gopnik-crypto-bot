@@ -86,6 +86,11 @@ public class MessageProcessor {
 
     public String doPrice(long chatId) {
         Set<String> currencies = alertService.getAllCurrenciesByChatId(chatId);
+
+        if (currencies.isEmpty()) {
+            return messenger.codeMessage("tg.message.list.currency.empty");
+        }
+
         StringBuilder builder = new StringBuilder();
         builder.append(messenger.codeMessage("tg.message.price-list.start"));
         return createPriceList(builder, currencies);
