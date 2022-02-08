@@ -1,8 +1,13 @@
 package com.tg.bot.telegramcryptobot.bot;
 
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
+import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
 import com.tg.bot.telegramcryptobot.entities.Alert;
+import com.tg.bot.telegramcryptobot.exceptions.BotException;
 import com.tg.bot.telegramcryptobot.services.AlertService;
+import com.tg.bot.telegramcryptobot.util.Command;
 import com.tg.bot.telegramcryptobot.util.Messenger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +22,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import static com.tg.bot.telegramcryptobot.util.CallbackDataBuilder.buildCallback;
 
 @Component
 public class PriceTracker {
@@ -66,9 +73,12 @@ public class PriceTracker {
 
         try {
 
-            mapAlerts.computeIfAbsent(alert.getCurrency(), p -> messageProcessor.getActualPrice(alert.getCurrency()));
+            double actualPrice = mapAlerts.computeIfAbsent(
+                    alert.getCurrency(),
+                    p -> messageProcessor.getActualPrice(alert.getCurrency())
+            );
 
-            if (checkTrigger(alert, mapAlerts.get(alert.getCurrency()))) {
+            if (checkTrigger(alert, actualPrice)) {
 
                 SendResponse sendResponse = tgBot.sendMessage(alert.getChatId(), messenger.codeMessage(
                         "tg.message.alert",
@@ -92,12 +102,13 @@ public class PriceTracker {
             }
 
         } catch (Exception ex) {
-            LOGGER.warn("Error sending notification", ex);
-            tgBot.sendMessage(Long.parseLong(System.getProperty("CHAT_ID")), messenger.codeMessage(
-                    "tg.message.error",
-                    ex.getMessage(),
-                    Arrays.toString(ex.getStackTrace())
-            ));
+            LOGGER.warn(BotException.ERROR_ALERT_MESSAGE, ex);
+            tgBot.sendMessage(Long.parseLong(System.getProperty("CHAT_ID")),
+                    BotException.ERROR_ALERT_MESSAGE + " : " + messenger.codeMessage(
+                            "tg.message.error",
+                            ex.getMessage(),
+                            Arrays.toString(ex.getStackTrace())
+                    ));
         }
 
     }

@@ -102,7 +102,7 @@ public class CallbackProcessor {
 
             builder.append(" - ")
                     .append(alert.getPrice())
-                    .append("$");
+                    .append("$\n");
 
             buttons.add(new InlineKeyboardButton(String.valueOf(i + 1)).callbackData(
                     buildCallback(Command.INFO, alert.getId())

@@ -5,7 +5,9 @@ import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.CallbackQuery;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.response.BaseResponse;
 import com.pengrad.telegrambot.response.SendResponse;
 import com.tg.bot.telegramcryptobot.exceptions.BotException;
 import com.tg.bot.telegramcryptobot.util.Command;
@@ -26,12 +28,12 @@ public class TgBot {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TgBot.class);
 
+    private final Executor executor = Executors.newFixedThreadPool(4);
+
     private final Messenger messenger;
     private final MessageProcessor messageProcessor;
     private final CallbackProcessor callbackProcessor;
     private final TelegramBot bot;
-
-    private final Executor executor = Executors.newFixedThreadPool(4);
 
     @Autowired
     public TgBot(Messenger messenger, MessageProcessor messageProcessor, CallbackProcessor callbackProcessor) {
@@ -101,9 +103,10 @@ public class TgBot {
         } catch (BotException ex) {
             sendMessage(chatId, ex.getMessage());
         } catch (Exception ex) {
-            LOGGER.warn("Error during execute SendMessage:", ex);
+            LOGGER.warn(BotException.ERROR_MESSAGE_MESSAGE, ex);
             sendMessage(chatId, messenger.codeMessage("tg.message.error.message"));
-            sendMessage(Long.parseLong(System.getProperty("CHAT_ID")), messenger.codeMessage(
+            sendMessage(Long.parseLong(System.getProperty("CHAT_ID")),
+                    BotException.ERROR_MESSAGE_MESSAGE + " : " + messenger.codeMessage(
                     "tg.message.error",
                     ex.getMessage(),
                     Arrays.toString(ex.getStackTrace())
@@ -141,9 +144,10 @@ public class TgBot {
             }
 
         } catch (Exception ex) {
-            LOGGER.warn("Error during execute CallbackQuery:", ex);
+            LOGGER.warn(BotException.ERROR_CALLBACK_MESSAGE, ex);
             sendMessage(chatId, messenger.codeMessage("tg.message.error.message"));
-            sendMessage(Long.parseLong(System.getProperty("CHAT_ID")), messenger.codeMessage(
+            sendMessage(Long.parseLong(System.getProperty("CHAT_ID")),
+                    BotException.ERROR_CALLBACK_MESSAGE + " : " + messenger.codeMessage(
                     "tg.message.error",
                     ex.getMessage(),
                     Arrays.toString(ex.getStackTrace())

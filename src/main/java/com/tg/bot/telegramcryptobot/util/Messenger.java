@@ -15,7 +15,6 @@ public class Messenger {
             "\uD83D\uDE31",
             "\uD83E\uDD73",
             "\uD83D\uDC4F",
-            "\uD83D\uDC14",
             "\uD83D\uDCA5",
             "\uD83D\uDD25",
             "\uD83C\uDF08",

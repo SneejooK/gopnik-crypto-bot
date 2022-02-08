@@ -79,7 +79,7 @@ public class MessageProcessor {
         } else {
             StringBuilder builder = new StringBuilder();
             builder.append(messenger.codeMessage("tg.message.price.start"));
-            return createPriceList(builder, Set.of(topCurrency));
+            return createPriceList(builder, topCurrency);
         }
 
     }
@@ -93,7 +93,7 @@ public class MessageProcessor {
 
         StringBuilder builder = new StringBuilder();
         builder.append(messenger.codeMessage("tg.message.price-list.start"));
-        return createPriceList(builder, currencies);
+        return createPriceList(builder, currencies.toArray(String[]::new));
     }
 
     public SendMessage doList(long chatId) {
@@ -116,6 +116,11 @@ public class MessageProcessor {
 
         if (oldAlert != null) {
             double oldPrice = oldAlert.getPrice();
+
+            if (oldPrice == verifiedPrice) {
+                return messenger.codeMessage("tg.message.alert.exist");
+            }
+
             updateAlert(oldAlert, verifiedPrice);
             return messenger.codeMessage(
                     "tg.message.alert.update",
@@ -187,7 +192,7 @@ public class MessageProcessor {
         alertService.save(oldAlert);
     }
 
-    private String createPriceList(StringBuilder builder, Set<String> currencies) {
+    private String createPriceList(StringBuilder builder, String[] currencies) {
         for (String currency : currencies) {
             builder.append(" : ")
                     .append(currency)
